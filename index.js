@@ -1,22 +1,22 @@
 const app = require('./app')
-const PORT = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 
-app.set('port', PORT);
+app.set('port', port);
 
 function normalizePort(val) {
-    const PORT = parseInt(val, 10);
+    const port = parseInt(val, 10);
 
-    if (isNaN(PORT)) {
+    if (isNaN(port)) {
         // named pipe
         return val;
     }
 
-    if (PORT >= 0) {
+    if (port >= 0) {
         // port number
-        return PORT;
+        return port;
     }
 
     return false;
 }
 
-app.listen(PORT, () => { console.log('Server has been started on port', PORT) })
+app.listen(port, () => { console.log('Server has been started on port', port) })
