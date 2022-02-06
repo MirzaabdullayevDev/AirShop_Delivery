@@ -9,7 +9,6 @@ const MongoStore = require('connect-mongodb-session')(session)
 const Handlebars = require('handlebars')
 const expressHandlebars = require('express-handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-const keys = require('./config/keys/index')
 const varMiddleware = require('./middleware/variables')
 const error404Handler = require('./middleware/error404')
 const path = require('path')
@@ -26,10 +25,12 @@ const cartRouter = require('./routes/cart')
 const deliveryCostRouter = require('./routes/deliveryCost')
 const driversRouter = require('./routes/drivers')
 
+require('dotenv').config()
+
 const app = express()
 const store = MongoStore({
     collection: 'sessions',
-    uri: keys.MONGO_URI
+    uri: process.env.MONGO_URI
 })
 
 app.engine('hbs', expressHandlebars({
@@ -43,7 +44,7 @@ app.set('views', path.join(__dirname, '/views'))
 //connecting to database
 
 mongoose.connect(
-    keys.MONGO_URI,
+    process.env.MONGO_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -56,7 +57,7 @@ mongoose.connect(
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(session({
-    secret: keys.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
