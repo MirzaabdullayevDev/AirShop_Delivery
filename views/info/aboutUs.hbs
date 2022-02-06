@@ -1,0 +1,19 @@
+<section class="aboutUs">
+    <div class="wrapper">
+        {{#if isAdmin}}
+        <a href="/admin" class="back__admin">
+            <i class="fas fa-caret-left"></i>
+            Админ
+        </a>
+        {{/if}}
+        <br>
+        <br>
+        <h1 class="aboutUs__title">AIRSHOP</h1>
+        <div class="aboutUs__text">
+            {{{text}}}
+        </div>
+        {{#if isAdmin}}
+        <a href="/info/getCreateOrEditInfoPage?pageName=about-us" class="aboutUs__btn">Редактировать</a>
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,27 @@
+<div class="wrapper">
+    <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+    <section class="drivers">
+        <h1 class="admin__head">Управление водителями</h1>
+        {{#if drivers}}
+        {{#each drivers}}
+        <p class="drivers__list">----------------------------------</p>
+        <p class="drivers__list"><strong>Имя - </strong>{{name}}</p>
+        <p class="drivers__list"><strong>chatId - </strong>{{chatId}}</p>
+        {{#if access}}
+        <p class="drivers__list"><strong>Доступ - </strong>есть</p>
+        <button type="button" class="drivers__btn"><a href="/drivers/{{chatId}}?access=false"
+                class="drivers__link">Блокировать</a></button>
+        {{else}}
+        <p class="drivers__list"><strong>Доступ - </strong>нет</p>
+        <button type="button" class="drivers__btn"><a href="/drivers/{{chatId}}?access=true"
+                class="drivers__link">Разрешить</a></button>
+        {{/if}}
+        <button type="button" class="drivers__btn"><a href="/drivers/delete/{{chatId}}"
+                class="drivers__link">Удалить</a></button>
+        <p class="drivers__list">----------------------------------</p>
+        {{/each}}
+        {{else}}
+        <h3>Список водителей пуст</h3>
+        {{/if}}
+    </section>
+</div>

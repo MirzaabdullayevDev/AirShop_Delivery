@@ -1,0 +1,13 @@
+<div class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <h2 class="admin__head">Добавить фото к слайдеру</h2>
+        <form action="/admin/addPhotoToSlider" method="POST" enctype="multipart/form-data"
+            class="auth__form admin__form">
+            <input class="auth__form__input" type="text" name="number" required placeholder="Номер фото">
+            <input class="auth__form__input" type="text" name="ref" required placeholder="Ссылка">
+            <input class="auth__form__input" type="file" required name="image">
+            <button type="submit" class="auth__form__submit">Добавить</button>
+        </form>
+    </div>
+</div>

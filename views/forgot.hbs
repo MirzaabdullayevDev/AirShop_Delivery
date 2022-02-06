@@ -1,0 +1,33 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Восстановление пароля</h2>
+        <p>{{forgotError}}</p>
+        <div class="auth__content" id="authPage">
+            <form id="authForm" method="POST" class="auth__form" action="/auth/forgot">
+                <h3 id="errorMessage"></h3>
+                <h5 class="auth__form__title">Восстановление пароля</h5>
+                <div class="auth__form__content">
+                    <input type="hidden" name="id" value="{{data.id}}">
+                    <input id="phoneNumber" name="telephone" readonly required type="text" class="auth__form__input"
+                        placeholder="Номер телефона" value="{{data.telephone}}">
+                    <input id="password" name="password" required type="password" class="auth__form__input"
+                        placeholder="Пароль" value="{{data.password}}">
+                    <input id="repeatPassword" name="repeatPassword" required type="password" class="auth__form__input"
+                        placeholder="Повторите пароль" value="{{data.repeatPassword}}">
+                    <button id="formSubmitButton" type="submit" class="auth__form__submit">Отправить</button>
+                    <a href="/auth/login" class="auth__form__new">Уже зарегистрированы? Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->
+
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script src="/js/auth.js"></script>

@@ -1,0 +1,39 @@
+<div class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        {{#if contacts.telephone}}
+        <h2 class="admin__head">Текущий номер телефона: <a href="tel: {{contacts.telephone}}">{{contacts.telephone}}</a>
+        </h2>
+        {{else}}
+        <h2 class="admin__head">Текущий номер телефона: <span class="admin__span"> не задан</span></h2>
+        {{/if}}
+
+        {{#if contacts.instagram}}
+        <h2 class="admin__head">Ссылка в instagram: <span class="admin__span"> <a
+                    href="{{contacts.instagram}}">{{contacts.instagram}}</a></span></h2>
+        {{else}}
+        <h2 class="admin__head">Ссылка в instagram: <span class="admin__span"> не задана</span></h2>
+        {{/if}}
+
+        {{#if contacts.telegram}}
+        <h2 class="admin__head">Ссылка в telegram: <span class="admin__span"> <a
+                    href="{{contacts.telegram}}">{{contacts.telegram}}</a></span></h2>
+        {{else}}
+        <h2 class="admin__head">Ссылка в telegram: <span class="admin__span"> не задана</span></h2>
+        {{/if}}
+
+        {{#if contacts.facebook}}
+        <h2 class="admin__head">Ссылка в facebook: <span class="admin__span"> <a
+                    href="{{contacts.facebook}}">{{contacts.facebook}}</a></span></h2>
+        {{else}}
+        <h2 class="admin__head">Ссылка в facebook: <span class="admin__span"> не задана</span></h2>
+        {{/if}}
+        <form action="/admin/setContacts" method="POST" class="auth__form admin__form">
+            <input class="auth__form__input" type="text" name="telephone" placeholder="Номер телефона">
+            <input class="auth__form__input" type="text" name="instagram" placeholder="Ссылка в instagram">
+            <input class="auth__form__input" type="text" name="telegram" placeholder="Ссылка в telegram">
+            <input class="auth__form__input" type="text" name="facebook" placeholder="Ссылка в facebook">
+            <button type="submit" class="auth__form__submit">Сохранить</button>
+        </form>
+    </div>
+</div>

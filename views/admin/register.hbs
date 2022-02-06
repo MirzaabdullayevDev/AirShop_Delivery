@@ -1,0 +1,35 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Регистрация администратора</h2>
+        <p>{{message}}</p>
+        <div class="auth__content" id="authPage">
+            <form action="/admin/register" id="authForm" method="POST" class="auth__form">
+                <h3 id="errorMessage"></h3>
+                <h5 class="auth__form__title">Введите свои данные</h5>
+                <div class="auth__form__content">
+                    <input type="hidden" name="id" value="{{data.id}}">
+                    <input name="telephone" readonly required type="text" value="{{data.telephone}}"
+                        class="auth__form__input">
+                    <input id="name" name="name" required type="text" class="auth__form__input" placeholder="Имя"
+                        value="{{data.name}}">
+                    <input id="password" name="password" required type="password" class="auth__form__input"
+                        placeholder="Пароль" value="{{data.password}}">
+                    <input id="repeatPassword" name="repeatPassword" required type="password" class="auth__form__input"
+                        placeholder="Повторите пароль" value="{{data.repeatPassword}}">
+                    <button type="submit" class="auth__form__submit">Зарегистрироваться</button>
+                    <a href="/admin/login" class="auth__form__new">Уже зарегистрированы? Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->
+
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script src="/js/auth.js"></script>

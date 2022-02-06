@@ -1,0 +1,31 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Авторизация</h2>
+        {{#if loginError}}
+        <p class="error">{{loginError}}</p>
+        {{/if}}
+
+        {{#if loginSucces}}
+        <p class="succes">{{loginSucces}}</p>
+        {{/if}}
+        <div class="auth__content">
+            <form action="/auth/login" method="POST" class="auth__form">
+                <h5 class="auth__form__title">Вход</h5>
+                <div class="auth__form__content">
+                    <input required id="phoneNumber" name="telephone" type="text" class="auth__form__input"
+                        placeholder="+998" value="{{data.telephone}}">
+                    <input required name="password" type="password" class="auth__form__input" placeholder="Пароль"
+                        value="{{data.password}}">
+                    <button class="auth__form__submit">Войти</button>
+                    <a href="/auth/verify?user=true" class="auth__form__new">Зарегистрироваться</a>
+                    <a href="/auth/verify?forgot=true" class="auth__form__new">Забыли пароль?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script> $("#phoneNumber").mask("+998111111111", { placeholder: '' })</script>

@@ -1,0 +1,155 @@
+<div class="menu__dark"></div>
+<!-- HEADER START -->
+<header id="header">
+    <div class="header__color" id="fixed">
+        <div class="wrapper">
+            <div class="header__bottom">
+                <div class="header__logo">
+                    <a href="/" class="header__logo__link">
+                        <img src="/images/logo.png" class="header__logo__img" alt="png">
+                        <img src="/images/logoMobile.png" class="header__logo__mobile" alt="png">
+                    </a>
+                </div>
+                <div class="header__call" id="telephone">
+                    <p class="header__call__text">Служба поддержки</p>
+                    <a href="tel:+998" class="header__call__link"></a>
+                </div>
+                <button class="menu__btn"><span class="menu__btn__span"></span></button>
+                <div class="header__menu__box">
+                    <div class="header__menu__box__top">
+                        <ul class="header__top__socials socials">
+                            {{#if isAuth}}
+                            <li class="socials__item"><a href="/userAccaunt" class="socials__link"><i
+                                        class="fal fa-user socials__link__icon"></i>
+                                    {{userName}}</a></li>
+                            <li class="socials__item"><a href="/" class="socials__link"><i
+                                        class="fal fa-home socials__link__icon"></i> Главная</a></li>
+                            <li class="socials__item"><a href="/cart" class="socials__link"><i
+                                        class="fal fa-shopping-cart socials__link__icon"></i>Корзина</a></li>
+
+                            <li class="socials__item"><a href="/orders" class="socials__link"><i
+                                        class="fal fa-clipboard-list socials__link__icon"></i>История заказов</a></li>
+                            <li class="socials__item"><a href="/auth/logout" class="socials__link"><i
+                                        class="far fa-sign-out-alt socials__link__icon"></i>Выйти</a></li>
+                            {{else}}
+                            <li class="socials__item"><i class="fal fa-user"></i>
+                                <a href="/auth/login" class="socials__link socials__link__in">Вход</a>
+                                <a href="/auth/verify?user=true" class="socials__link socials__link__in">Регистрация</a>
+                            </li>
+                            {{/if}}
+                        </ul>
+                        <div class="our__social">
+                            <a href="tel:+998" class="header__call__link">+998</a>
+                            <ul class="our__social__list">
+                                <li class="our__social__item"><a href="#!" target="_blank"
+                                        class="facebook_link our__social__link"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="our__social__item"><a href="#!" target="_blank"
+                                        class="instagram_link our__social__link"><i class="fab fa-instagram"></i></a>
+                                </li>
+                                <li class="our__social__item"><a href="#!" target="_blank"
+                                        class="telegram_link our__social__link"><i class="fab fa-telegram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="/products" class="header__form">
+                    <input name="search" type="search" class="header__search" placeholder="Поиск по названию товаров"
+                        value="{{searchQuery}}">
+                    <button class="search__btn"><i class="far fa-search"></i></button>
+                </form>
+
+                <div class="header__action">
+                    <a href="#!" title="{{userName}}" class="header__action__item"><i class="fal fa-user"></i></a>
+                    <ul class="user__list">
+                        {{#if isAuth}}
+                        <li class="user__list__item"><a href="/userAccaunt" class="user__list__link"><i
+                                    class="fal fa-user"></i>
+                                {{userName}}</a></li>
+                        <li class="user__list__item"><a href="/orders" class="user__list__link"><i
+                                    class="far fa-list-ul"></i> Мои заказы</a></li>
+                        <li class="user__list__item"><a href="/cart" class="user__list__link"><i
+                                    class="fal fa-shopping-cart"></i> Корзина</a></li>
+                        <li class="user__list__item"><a href="/auth/logout" class="user__list__link">Выйти</a></li>
+                        {{else}}
+                        <li class="user__list__item"><a href="/auth/login" class="user__list__link">Войти</a></li>
+                        <li class="user__list__item"><a href="/auth/verify?user=true"
+                                class="user__list__link">Регистрация</a></li>
+                        {{/if}}
+                    </ul>
+
+                </div>
+                {{#if isAuth}}
+                <div class="header__shopping shopping">
+                    <a href="/cart" class="shopping__card">
+                        <i class="fal fa-shopping-cart"></i><span class="card__span "></span>
+                    </a>
+                    <div class="shopping__wallet">
+                        <a href="/cart" class="shopping__amount"><span class="amount"></span> <span
+                                class="currency">Сум</span></a>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            {{#if isAuth}}
+            <div class="fixed__card">
+                <a href="/cart" class="fixed__card__link">
+                    <span class="card__span fixed__card__count"></span>
+                    <span class="fixed__card__icon"><i class="fal fa-shopping-cart"></i> Корзина </span>
+                    <span class="fixed__card__amount"><span class="amount"></span> <span
+                            class="currency">Сум</span></span>
+                </a>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</header>
+<!-- HEADER END -->
+
+<!-- SEARCH START -->
+<section class="form">
+    <div class="wrapper">
+        <form action="/products" class="form__mobile" method="GET">
+            <input name="search" type="search" class="form__search" placeholder="Поиск по названию товаров"
+                value="{{searchQuery}}" required>
+            <button type="submit" class="form__submit"><i class="far fa-search"></i></button>
+        </form>
+    </div>
+</section>
+<!-- SEARCH END -->
+
+
+<!-- SECTION MODAL START -->
+<section class="modal">
+    <div class="modal__view">
+        <ul class="modal__tabs">
+            <h3 class="modal__tabs__link">Сначало войдите в свой аккаунт</h3>
+        </ul>
+        <div class="modal__content">
+            <div id="panel2" class="modal__panel active">
+                <form action="/auth/login" method="POST" class="modal__body">
+                    <div class="modal__form">
+                        <input type="text" id="login" name="telephone" class="modal__input" placeholder="+998">
+                    </div>
+                    <div class="modal__form">
+                        <input type="password" id="password" name="password" class="modal__input" placeholder="Пароль">
+                    </div>
+                    <button type="submit" class="modal__login__btn">Войти</button>
+                </form>
+                <div class="modal__footer">
+                    <div class="modal__footer__options">
+                        <p class="modal__footer__text"><a href="/auth/verify?user=true"
+                                class="modal__footer__link">Регистрация</a></p>
+                        <p class="modal__footer__text"> <a href="/auth/verify?forgot=true"
+                                class="modal__footer__link">Забыли пароль ?</a>
+                        </p>
+
+                    </div>
+                    <button class="modal__close__btn">Назад</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION MODAL END -->

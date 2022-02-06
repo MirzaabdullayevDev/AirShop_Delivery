@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+</div>
+<section class="logo__change">
+    <div class="wrapper">
+        <h1 class="admin__head">Добавление/Изменение логотипа для ПК версии</h1>
+        <form action="/admin/createOrUpdateLogo?logo=true" method="POST" enctype="multipart/form-data"
+            class="auth__form">
+            <input required type="file" name="image" class="auth__form__input">
+            <button type="submit" class="auth__form__submit">Сохранить</button>
+        </form>
+
+        <h1 class="admin__head">Добавление/Изменение логотипа для мобильной версии</h1>
+        <form action="/admin/createOrUpdateLogo?logoMobile=true" method="POST" enctype="multipart/form-data"
+            class="auth__form">
+            <input required type="file" name="image" class="auth__form__input">
+            <button type="submit" class="auth__form__submit">Сохранить</button>
+        </form>
+    </div>
+</section>

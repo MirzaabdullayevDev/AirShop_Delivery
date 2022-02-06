@@ -1,0 +1,16 @@
+version: "2"
+services:
+  web:
+    build: .
+    restart: always
+    environment: 
+      - NODE_ENV=production
+      - SESSION_SECRET=123456789asdfghjkl
+      - MONGO_URI=mongodb://mongo:27017/airshop #для линукс сервера
+    ports:
+    - "3000:3000"
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo
+    restart: always

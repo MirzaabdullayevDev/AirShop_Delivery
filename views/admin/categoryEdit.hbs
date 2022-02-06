@@ -1,0 +1,19 @@
+<section class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <div class="auth__content">
+            <form action="/categories/edit/{{category._id}}" method="POST" enctype="multipart/form-data"
+                class="auth__form">
+                <h5 class="auth__form__title">Редактирование категорий</h5>
+                <div class="auth__form__content">
+                    <input name="name" type="text" value="{{category.name}}" class="auth__form__input" required
+                        placeholder="Название категории">
+                    <input name="priority" type="number" value="{{category.priority}}" class="auth__form__input" required
+                        placeholder="Приоритет показа на главной">
+                    <input name="image" type="file" class="auth__form__input" aria-placeholder="Иконка для категории">
+                    <button class="auth__form__submit">Обновить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

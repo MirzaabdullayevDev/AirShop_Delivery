@@ -1,0 +1,22 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Вход в админ панель</h2>
+        <p>{{message}}</p>
+        <div class="auth__content">
+            <form action="/admin/login" method="POST" class="auth__form">
+                <h5 class="auth__form__title">Вход</h5>
+                <div class="auth__form__content">
+                    <input id="phoneNumber" name="telephone" type="text" required class="auth__form__input" placeholder="Телефон">
+                    <input name="password" type="password" class="auth__form__input" required placeholder="Пароль">
+                    <button class="auth__form__submit">Войти</button>
+                    <a href="/auth/verify?admin=true" class="auth__form__new">Зарегистрироваться</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script> $("#phoneNumber").mask("+998111111111",{placeholder:''})</script>

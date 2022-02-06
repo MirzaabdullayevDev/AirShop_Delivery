@@ -1,0 +1,87 @@
+<div class="wrapper">
+    {{#if userError}}
+        <p class="error">Произошла ошибка при удалении пользователя</p>
+    {{/if}}
+    <a href="/admin/users" class="back__admin"><i class="fas fa-caret-left"></i>Назад</a>
+    <h1 class="admin__head">Поиск пользователей</h1>
+    <p class="admin__text">Заполните хотябы одну из полей</p>
+    <form action="/admin/users-search" method="GET" class="auth__form admin__form">
+        <input class="auth__form__input" type="text" name="name" placeholder="Имя" value="{{query.name}}">
+        <input class="auth__form__input" type="text" name="telephone" placeholder="Номер телефона"
+            value="{{query.telephone}}">
+        {{#if query.blocked}}
+        <label for="blocked">Блокированные</label>
+        <input id="blocked" type="checkbox" name="blocked" checked>
+        {{else}}
+        <label for="blocked">
+            Блокированные</label>
+        <input id="blocked" type="checkbox" name="blocked">
+        {{/if}}
+        <button class="auth__form__submit" type="submit">Поиск</button>
+    </form>
+
+    <div class="wrapper">
+        <section class="drivers">
+            <h1 class="admin__head">Список пользователей</h1>
+            {{#if users}}
+            {{#each users}}
+            <p class="drivers__list"><strong>Имя - </strong>{{name}}</p>
+            <p class="drivers__list"><strong>Телефон - </strong>{{telephone}}</p>
+            {{#if blocked}}
+            <p class="drivers__list"><strong>Состояние - </strong>Заблокирован</p>
+            <button type="button" class="drivers__btn"><a href="/admin/userAccessManaging?id={{_id}}&blocked=false"
+                    class="drivers__link">Разблокировать</a></button>
+            {{else}}
+            <p class="drivers__list"><strong>Доступ - </strong>есть</p>
+            <button type="button" class="drivers__btn"><a href="/admin/userAccessManaging?id={{_id}}&blocked=true"
+                    class="drivers__link">Блокировать</a></button>
+            {{/if}}
+            <button type="button" class="drivers__btn"><a href="/admin/delete-user/{{_id}}"
+                    class="drivers__link">Удалить</a></button>
+            <p class="drivers__list">----------------------------------</p>
+            {{/each}}
+            {{else}}
+            <h3>Список пользователей пуст</h3>
+            {{/if}}
+        </section>
+    </div>
+
+
+
+
+
+
+    <!-- SECTION PAGINATION START -->
+    {{#if paginate.totalDocs}}
+    <section class="pagination">
+        <div class="wrapper">
+            <ul class="pagination__numbers">
+                {{#if paginate.hasPrevPage}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/users-search?page={{paginate.prevPage}}{{queryString}}"
+                        class="pagination__numbers__number"><i class="far fa-chevron-left"></i></a></li>
+                {{/if}}
+                {{#each paginate.pageNumbers}}
+                {{#if active}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/users-search?page={{page}}{{queryString}}"
+                        class="pagination__numbers__number active">{{page}}</a>
+                </li>
+                {{else}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/users-search?page={{page}}{{queryString}}"
+                        class="pagination__numbers__number">{{page}}</a>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{#if paginate.hasNextPage}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/users-search?page={{paginate.nextPage}}{{queryString}}"
+                        class="pagination__numbers__number">
+                        <i class="far fa-chevron-right"></i></a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </section>
+    {{/if}}
+    <!-- SECTION PAGINATION END -->

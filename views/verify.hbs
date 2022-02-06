@@ -1,0 +1,33 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Подтверждение номера телефона</h2>
+        <p class="error">{{verifyError}}</p>
+        <div class="auth__content" id="authPage">
+            <form action="{{action}}" id="authForm" method="POST" class="auth__form" novalidate>
+                <h3 id="errorMessage"></h3>
+                <h5 class="auth__form__title">Введите номер телефона</h5>
+                <div class="auth__form__content">
+                    <input required id="phoneNumber" name="telephone" type="text" class="auth__form__input"
+                        placeholder="+998" value="{{data.telephone}}">
+                    <input type="hidden" name="verificationId" id="verificationId">
+                    <div id="recaptcha-container"></div>
+                    <div id="formElems" class="auth__form__content">
+                        <button  type="button" id="getVerifyCode" data-page="{{page}}"
+                            class="auth__form__submit">Получить код </button>
+                    </div>
+                    <a href="/auth/login" class="auth__form__new">Уже зарегистрированы? Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->
+
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/jquery.maskedinput.min.js"></script>
+<script src="/js/auth.js"></script>

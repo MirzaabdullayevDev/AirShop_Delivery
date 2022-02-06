@@ -1,0 +1,52 @@
+<section class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <div class="auth__content">
+            <form action="/products/edit/{{product._id}}" method="POST" enctype="multipart/form-data"
+                class="auth__form">
+                <h5 class="auth__form__title">Редактирование продукта</h5>
+                <div class="auth__form__content">
+                    <select name="categoryId" required class="auth__form__input">
+                        {{#each categoriesList}}
+                        {{#if selected}}
+                        <option selected value="{{_id}}">{{name}}</option>
+                        {{else}}
+                        <option value="{{_id}}">{{name}}</option>
+                        {{/if}}
+                        {{/each}}
+                    </select>
+                    <input name="name" value="{{product.name}}" type="text" required class="auth__form__input"
+                        placeholder="Название товара">
+                    <input name="cost" value="{{product.cost}}" type="text" required class="auth__form__input"
+                        placeholder="Цена">
+                    <input name="caseNumber" value="{{product.caseNumber}}" type="text" required class="auth__form__input"
+                        placeholder="Номер полки">
+                    <input name="priority" type="number" class="auth__form__input" placeholder="Приоритет показа на слайдере"
+                        value="{{product.priority}}">
+                    <select name="isExist" required class="auth__form__input">
+                        {{#if product.isExist}}
+                        <option selected value="true">В наличии</option>
+                        <option value="false">Нет в наличии</option>
+                        {{else}}
+                        <option value="true">В наличии</option>
+                        <option selected value="false">Нет в наличии</option>
+                        {{/if}}
+                    </select>
+
+                    <select name="showInProductSlider" required class="auth__form__input">
+                        {{#if product.showInProductSlider}}
+                        <option selected value="true">Показать на слайдере</option>
+                        <option value="false">Не показать на слайдере</option>
+                        {{else}}
+                        <option value="true">Показать на слайдере</option>
+                        <option selected value="false">Не показать на слайдере</option>
+                        {{/if}}
+                    </select>
+
+                    <input name="image" type="file" class="auth__form__input">
+                    <button type="submit" class="auth__form__submit">Обновить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,165 @@
+<div class="wrapper">
+    <a href="/admin/ordersManagingPage" class="back__admin"><i class="fas fa-caret-left"></i>Назад</a>
+</div>
+<section class="goods">
+    {{#if deliveryTimeInterval}}
+    <h2 class="goods__head">{{deliveryTimeInterval}}<span class="goods__head__number"></span></h2>
+    {{else}}
+    <h2 class="goods__head">Заказы<span class="goods__head__number"></span></h2>
+    {{/if}}
+    {{#if timeId}}
+    <a href="/orders/map?timeId={{timeId}}" target="_blanc" class="goods__link">Показать на карте</a>
+    {{else}}
+    <a href="/orders/map" target="_blanc" class="goods__link">Показать на карте</a>
+    {{/if}}
+
+</section>
+<h2 class="admin__head">Поиск заказов</h2>
+<form action="/admin/orders" method="get" class="auth__form">
+    <input class="auth__form__input" type="text" name="order" placeholder="Номер заказа" value="{{query.order}}">
+    <label for="start">Начало</label>
+    <input class="auth__form__input" type="date" name="start" placeholder="Начало" value="{{query.start}}" id="start">
+    <label for="end">Конец</label>
+    <input class="auth__form__input" type="date" name="end" placeholder="Конец" value="{{query.end}}" id="end">
+    <input class="auth__form__input" type="text" name="telephone" placeholder="Номер телефона клиента"
+        value="{{query.telephone}}">
+    <button class="auth__form__submit">Найти</button>
+</form>
+{{#if orders}}
+<div id="ordersContainer">
+    {{#each orders}}
+    <section class="goods" id="order-{{order}}">
+        <div class="goods__box">
+            <ul class="goods__list">
+                <li class="goods__list__item">
+                    <ul class="goods__name namebox">
+                        <li class="goods__menu__item">Название</li>
+                        {{#each list}}
+                        <li class="namebox__item">{{name}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="goods__list__item">
+                    <ul class="goods__price">
+                        <li class="goods__menu__item">Цена</li>
+                        {{#each list}}
+                        <li class="goods__price__item">{{cost}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="goods__list__item">
+                    <ul class="goods__count">
+                        <li class="goods__menu__item">Количество</li>
+                        {{#each list}}
+                        <li class="goods__count__item">{{count}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+                <li class="goods__list__item">
+                    <ul class="goods__total">
+                        <li class="goods__menu__item">Сумма</li>
+                        {{#each list}}
+                        <li class="goods__total__item">{{sum}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+            </ul>
+            <div class="goods__action">
+                <div class="goods__action__text">
+                    <span class="goods__action__item">Всего: </span>
+                    <span class="goods__action__item">Стоимость доставки: </span>
+                    <span class="goods__action__item">Дата заказа(дата и время): </span>
+                    <span class="goods__action__item">Время доставки: </span>
+                    <span class="goods__action__item">Номер заказа:</span>
+                    <span class="goods__action__number">Клиент:</span>
+                    <span class="goods__action__number">Номер телефона клиента:</span>
+
+                </div>
+                <div class="goods__action__price">
+                    <span class="goods__action__all">{{cartTotalCost}} Сум</span>
+                    <span class="goods__action__delivery">{{deliveryCost}} Сум</span>
+                    <span class="goods__action__time__now">{{date}}</span>
+                    <span class="goods__action__time">{{deliveryTimeInterval}}</span>
+                    <span class="goods__action__number">{{order}}</span>
+                    <a href="/admin/users-search?id={{user._id}}" class="users__name">{{user.name}}</a>
+                    <a href="tel:{{user.telephone}}" class="users__name">{{user.telephone}}</a>
+                </div>
+            </div>
+            <div class="goods__amount">
+                <span class="goods__amount__text">Итого:</span>
+                <span class="goods__amount__count">{{orderTotalCost}} Cум</span>
+            </div>
+            <div class="goods__checks">
+                <label class="goods__checks__label">
+                    {{#if isWrapped}}
+                    <input data-order="{{order}}" name="isWrapped" type="checkbox" checked
+                        class="goods__checks__checkbox">
+                    {{else}}
+                    <input data-order="{{order}}" name="isWrapped" type="checkbox" class="goods__checks__checkbox">
+                    {{/if}}
+                    <span class="goods__checks__span"></span>
+                </label>
+                <span class="goods__checks__text">Упаковано</span>
+            </div>
+            <div class="goods__checks">
+                <label class="goods__checks__label">
+                    {{#if isDelivered}}
+                    <input data-order="{{order}}" name="isDelivered" type="checkbox" checked
+                        class="goods__checks__checkbox">
+                    {{else}}
+                    <input data-order="{{order}}" name="isDelivered" type="checkbox" class="goods__checks__checkbox">
+                    {{/if}}
+                    <span class="goods__checks__span"></span>
+                </label>
+                <span class="goods__checks__text">Доставлено</span>
+            </div>
+            <button class="delete__button" type="button" data-order="{{order}}">Удалить</button>
+            {{#if adress.latitude}}
+            <button type="button" data-order="{{order}}" class="sendLocation">Отправить геолокацию
+                водителям</button>
+            {{/if}}
+        </div>
+    </section>
+    {{/each}}
+    <!-- SECTION PAGINATION START -->
+    {{#if paginate.totalDocs}}
+    <section class="pagination">
+        <div class="wrapper">
+
+            <ul class="pagination__numbers">
+                {{#if paginate.hasPrevPage}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/orders?page={{paginate.prevPage}}{{queryString}}"
+                        class="pagination__numbers__number"><i class="far fa-chevron-left"></i></a></li>
+                {{/if}}
+                {{#each paginate.pageNumbers}}
+                {{#if active}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/orders?page={{page}}{{@root.queryString}}"
+                        class="pagination__numbers__number active">{{page}}</a>
+                </li>
+                {{else}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/orders?page={{page}}{{@root.queryString}}"
+                        class="pagination__numbers__number">{{page}}</a>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{#if paginate.hasNextPage}}
+                <li class="pagination__numbers__item">
+                    <a href="/admin/orders?page={{paginate.nextPage}}{{queryString}}"
+                        class="pagination__numbers__number">
+                        <i class="far fa-chevron-right"></i></a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </section>
+    {{/if}}
+    <!-- SECTION PAGINATION END -->
+</div>
+{{else}}
+<section class="goods">
+    <h2 class="goods__head">Заказов пока нет<span class="goods__head__number"></span></h2>
+</section>
+{{/if}}
+<script src="/js/orders.js"></script>

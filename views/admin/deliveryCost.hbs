@@ -1,0 +1,14 @@
+<div class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        {{#if deliveryCost}}
+        <h1 class="admin__head">Текущая стоимость доставки: <span class="admin__span">{{deliveryCost.cost}}</span></h1>
+        {{else}}
+        <h1 class="admin__head">Текущая стоимость доставки: <span class="admin__span">не задана</span></h1>
+        {{/if}}
+        <form action="/admin/setDeliveryCost" method="POST" class="auth__form admin__form">
+            <input class="auth__form__input" type="text" name="deliveryCost" required placeholder="Напишите стоимость доставки">
+            <button type="submit" class="auth__form__submit">Изменить стоимость доставки</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<!-- SECTION SLIDER START -->
+<section class="slider">
+    <div class="wrapper">
+        <div class="slider__head owl-carousel">
+            {{#each slider}}
+            <div class="slider__head__item">
+                <a href="{{ref}}" class="slider__head__link"><img class="slider__head__img" src="{{imageSrc}}"
+                        alt="png"></a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+<!-- SECTION SLIDER END -->
+
+<div class="categories">
+
+    <div class="wrapper">
+    <a href="#!" class="products__link">Категории товаров</a>
+        <div class="categories__slider owl-carousel">
+            {{#each categories}}
+            <a href="/products/{{_id}}" class="categories__box">
+                <span class="categories__item"><img src="{{imageSrc}}" alt="png" class="categories__img"></span>
+                <span class="categories__title">{{name}}</span>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<!-- SECTION PRODUCTS START -->
+<section class="products">
+    <div class="wrapper">
+        <div class="products__head">
+            <a href="#!" class="products__link">Рекомендованные товары</a>
+            <div id="productList" class="products__slider owl-carousel">
+                {{#each products}}
+                <div class="products__item">
+                    <a href="#!" class="products__item__link">
+                        <img class="products__item__img" src="{{imageSrc}}" alt="jpg">
+                    </a>
+                    {{#if isExist}}
+                    {{else}}
+                    <div class="products__item__empty">Нет в наличии</div>
+                    {{/if}}
+                    <p class="products__item__name">{{name}}</p>
+                    {{#if isAdmin}}
+                    <p>Приоритет: {{priority}}</p>
+                    {{/if}}
+                    <div class="products__item__prices">
+                        <span class="products__item__amount">{{cost}} сум</span>
+                        <div class="products__item__btns">
+                            <button class="products__item__btn">Купить<span class="products__item__icon"><i
+                                        class="fal fa-shopping-cart"></i></span></button>
+                            <div class="quantity">
+                                <button class="quantity__minus"><i class="far fa-minus"></i></button>
+                                <span class="quantity__show"></span>
+                                <button class="quantity__pilus"><i class="far fa-plus"></i></button>
+                                <button data-id={{_id}} class="quantity__add"><i
+                                        class="addToCart fas fa-cart-arrow-down"></i></button>
+                            </div>
+                            <a href="#!" class="products__item__chosen"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+</section>
+<!-- SECTION PRODUCTS END -->
+
+
+
+{{!-- 
+    <!-- SECTION FEATURES START -->
+    <section class="features">
+        <div class="wrapper">
+            <h2 class="features__head">Наши преимущества</h2>
+            <div class="features__box">
+                <div class="features__item">
+                    <a href="#!" class="features__link"><i class="far fa-shield-check"></i></a>
+                    <h5 class="features__name">Контроль качества</h5>
+                    <p class="features__text">Гарантия качества продуктов</p>
+                </div>
+                <div class="features__item">
+                    <a href="#!" class="features__link"><i class="fas fa-tasks"></i></a>
+                    <h5 class="features__name">Ассортимент</h5>
+                    <p class="features__text">Широкий ассортимент продуктов</p>
+                </div>
+                <div class="features__item">
+                    <a href="#!" class="features__link"><i class="far fa-shipping-fast"
+                            style="font-style: italic;"></i></a>
+                    <h5 class="features__name">Доставка (08.00 - 22.00)</h5>
+                    <p class="features__text">В команде <span>AIRSHOP</span> только вежливые и пунктуальные курьеры</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION FEATURES END --> --}}

@@ -1,0 +1,33 @@
+<!-- SECTION SLIDER START -->
+<section class="slider">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <h1 class="admin__head">Slider</h1>
+        <div class="slider__head owl-carousel">
+            {{#each slider}}
+            <div class="slider__head__item">
+                <a href="{{ref}}" class="slider__head__link"><img class="slider__head__img" src="{{imageSrc}}" alt="png"></a>
+                <div class="admin__slider">
+                    <span>Номер слайдера: <span class="admin__span">{{number}}</span></span>
+                    <a href="/admin/deletePhotoFromSlider?id={{_id}}"><button class="admin__slider__remove">Удалить</button></a>
+                </div>
+
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+<!-- SECTION SLIDER END -->
+<div class="wrapper">
+    <div class="admin__box">
+        <a href="/admin/addPhotoToSlider" class="admin__links">Добавить фото к слайдеру</a>
+        <a href="/admin/createOrUpdatelogo" class="admin__links">Изменить логотип</a>
+
+
+        <h3 class="admin__footer">Страница -<a class="admin__footer__links" href="/info/about-us">О нас</a></h3>
+        <h3 class="admin__footer">Страница -<a class="admin__footer__links" href="/info/agreement">Пользовательское
+                соглашение</a></h3>
+        <h3 class="admin__footer">Страница -<a class="admin__footer__links" href="/info/contacts">Контакты</a></h3>
+        <h3 class="admin__footer">Страница -<a class="admin__footer__links" href="/info/faq">Вопросы и ответы</a></h3>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!-- SECTION CATEGORIES START -->
+<section class="categories">
+        <div class="wrapper">
+                <h2 class="categories__head">Категория товаров</h2>
+                <div class="categories__box__big">
+                        {{#if categories}}
+                        {{#each categories}}
+                        <a href="/products/{{_id}}?page=1" class="categories__box categories__box__link">
+                                <span class="categories__item"><img src="{{imageSrc}}" alt="png"
+                                                class="categories__img"></span>
+                                <span class="categories__box__title">{{name}}</span></a>
+                        {{#if isAdmin}}
+                              <p>Приоритет: {{priority}}</p>
+                        {{/if}}
+                        {{/each}}
+
+                        {{else}}
+                        <h3>Список категорий пуст</h3>
+                        {{/if}}
+
+                </div>
+        </div>
+</section>
+<!-- SECTION CATEGORIES END -->

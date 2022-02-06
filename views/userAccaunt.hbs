@@ -1,0 +1,19 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Аккаунт</h2>
+        <div class="auth__content">
+            <form action="/userAccaunt" method="post" class="auth__form">
+                <h5 class="auth__form__title">Информация</h5>
+                <div class="auth__form__content">
+                    <span class="auth__form__inpu">{{user.telephone}}</span>
+                    <input name="name" type="text" value="{{user.name}}" class="auth__form__input" placeholder="Имя">
+                    <input name="password" type="password" class="auth__form__input"
+                        placeholder="Новый пароль(не объязательно)">
+                    <button type="submit" class="auth__form__submit">Обновить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->

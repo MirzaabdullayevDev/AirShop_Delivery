@@ -1,0 +1,104 @@
+<section class="goods">
+    <h2 class="goods__head">История заказов<span class="goods__head__number"></span></h2>
+</section>
+{{#if orders}}
+{{#each orders}}
+<section class="goods">
+    <div class="goods__box">
+        <ul class="goods__list">
+            <li class="goods__list__item">
+                <ul class="goods__name namebox">
+                    <li class="goods__menu__item">Название</li>
+                    {{#each list}}
+                    <li class="namebox__item">{{name}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="goods__list__item">
+                <ul class="goods__price">
+                    <li class="goods__menu__item">Цена</li>
+                    {{#each list}}
+                    <li class="goods__price__item">{{cost}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="goods__list__item">
+                <ul class="goods__count">
+                    <li class="goods__menu__item">Количество</li>
+                    {{#each list}}
+                    <li class="goods__count__item">{{count}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="goods__list__item">
+                <ul class="goods__total">
+                    <li class="goods__menu__item">Сумма</li>
+                    {{#each list}}
+                    <li class="goods__total__item">{{sum}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+        </ul>
+        <div class="goods__action">
+            <div class="goods__action__text">
+                <span class="goods__action__item">Всего: </span>
+                <span class="goods__action__item">Стоимость доставки: </span>
+                <span class="goods__action__item">Дата заказа: </span>
+                <span class="goods__action__item">Время доставки: </span>
+                <span class="goods__action__item">Номер заказа:</span>
+                <span class="goods__action__number">Номер телефона:</span>
+            </div>
+            <div class="goods__action__price">
+                <span class="goods__action__all">{{cartTotalCost}} Сум</span>
+                <span class="goods__action__delivery">{{deliveryCost}} Сум</span>
+                <span class="goods__action__time__now">{{date}}</span>
+                <span class="goods__action__time">{{deliveryTimeInterval}}</span>
+                <span class="goods__action__number">{{order}}</span>
+                <span class="goods__action__number">{{user.telephone}}</span>
+            </div>
+        </div>
+        <div class="goods__amount">
+            <span class="goods__amount__text">Итого:</span>
+            <span class="goods__amount__count">{{orderTotalCost}} Cум</span>
+        </div>
+    </div>
+</section>
+{{/each}}
+
+<!-- SECTION PAGINATION START -->
+{{#if paginate.totalDocs}}
+<section class="pagination">
+    <div class="wrapper">
+
+        <ul class="pagination__numbers">
+            {{#if paginate.hasPrevPage}}
+            <li class="pagination__numbers__item">
+                <a href="/orders?page={{paginate.prevPage}}" class="pagination__numbers__number"><i
+                        class="far fa-chevron-left"></i></a></li>
+            {{/if}}
+            {{#each paginate.pageNumbers}}
+            {{#if active}}
+            <li class="pagination__numbers__item">
+                <a href="/orders?page={{page}}" class="pagination__numbers__number active">{{page}}</a>
+            </li>
+            {{else}}
+            <li class="pagination__numbers__item">
+                <a href="/orders?page={{page}}" class="pagination__numbers__number">{{page}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            {{#if paginate.hasNextPage}}
+            <li class="pagination__numbers__item">
+                <a href="/orders?page={{paginate.nextPage}}" class="pagination__numbers__number">
+                    <i class="far fa-chevron-right"></i></a></li>
+            {{/if}}
+        </ul>
+    </div>
+</section>
+{{/if}}
+<!-- SECTION PAGINATION END -->
+{{else}}
+<section class="goods">
+    <h2 class="goods__head">Заказов пока нет<span class="goods__head__number"></span></h2>
+</section>
+{{/if}}

@@ -1,0 +1,26 @@
+<!-- SECTION AUTH START -->
+<section class="auth">
+    <div class="wrapper">
+        <h2 class="auth__title">Регистрация</h2>
+        <p>{{registerError}}</p>
+        <div class="auth__content">
+            <form action="/auth/register" method="POST" class="auth__form">
+                <h3 id="errorMessage"></h3>
+                <h5 class="auth__form__title">Регистрация</h5>
+                <div class="auth__form__content">
+                    <input type="hidden" name="id" value="{{data.id}}">
+                    <input name="telephone" readonly required type="text" value="{{data.telephone}}" class="auth__form__input">
+                    <input id="name" name="name" required type="text" class="auth__form__input" 
+                        placeholder="Имя"  value="{{data.name}}">
+                    <input id="password" name="password" required type="password" class="auth__form__input"
+                        placeholder="Пароль" value="{{data.password}}">
+                    <input id="repeatPassword" name="repeatPassword" required type="password" class="auth__form__input"
+                        placeholder="Повторите пароль" value="{{data.repeatPassword}}">
+                    <button id="formSubmitButton" type="submit" class="auth__form__submit">Зарегистрироваться</button>
+                    <a href="/auth/login" class="auth__form__new">Уже зарегистрированы? Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- SECTION AUTH END -->

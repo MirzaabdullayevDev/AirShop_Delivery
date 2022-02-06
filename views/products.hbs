@@ -1,0 +1,80 @@
+<!-- SECTION PRODUCTS START -->
+<section class="products">
+    <div class="wrapper">
+        <div class="products__head">
+            <a href="#!" class="products__link">{{categoryName}}</a>
+            <div id="productList" class="products__slider">
+                {{#if products}}
+                {{#each products}}
+                <div class="products__item ">
+                    <a href="#!" class="products__item__link">
+                        <img class="products__item__img" src="{{imageSrc}}" alt="jpg">
+                    </a>
+                    {{#if isExist}}
+                    {{else}}
+                    <div class="products__item__empty">Нет в наличии</div>
+                    {{/if}}
+                    <p class="products__item__name">{{name}}</p>
+                    {{#if isAdmin}}
+                    <p>Приоритет: {{priority}}</p>
+                    {{/if}}
+                    <div class="products__item__prices">
+                        <span class="products__item__amount">{{cost}} сум</span>
+                        <div class="products__item__btns">
+                            <button class="products__item__btn">Купить <span class="products__item__icon"><i
+                                        class="fal fa-shopping-cart"></i></span></button>
+                            <div class="quantity">
+                                <button class="quantity__minus"><i class="far fa-minus"></i></button>
+                                <span class="quantity__show"></span>
+                                <button class="quantity__pilus"><i class="far fa-plus"></i></button>
+                                <button data-id={{_id}} class="quantity__add"><i
+                                        class="addToCart fas fa-cart-arrow-down"></i></button>
+                            </div>
+                            <a href="#!" class="products__item__chosen"><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+                {{else}}
+                <h3 class="product__none">Данная категория пуст</h3>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION PRODUCTS END -->
+
+<!-- SECTION PAGINATION START -->
+{{#if paginate.totalDocs}}
+<section class="pagination">
+    <div class="wrapper">
+
+        <ul class="pagination__numbers">
+            {{#if paginate.hasPrevPage}}
+            <li class="pagination__numbers__item">
+                <a href="/products/{{categoryId}}?page={{paginate.prevPage}}" class="pagination__numbers__number"><i
+                        class="far fa-chevron-left"></i></a></li>
+            {{/if}}
+            {{#each paginate.pageNumbers}}
+            {{#if active}}
+            <li class="pagination__numbers__item">
+                <a href="/products/{{@root.categoryId}}?page={{page}}"
+                    class="pagination__numbers__number active">{{page}}</a>
+            </li>
+            {{else}}
+            <li class="pagination__numbers__item">
+                <a href="/products/{{@root.categoryId}}?page={{page}}" class="pagination__numbers__number">{{page}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            {{#if paginate.hasNextPage}}
+            <li class="pagination__numbers__item">
+                <a href="/products/{{categoryId}}?page={{paginate.nextPage}}" class="pagination__numbers__number">
+                    <i class="far fa-chevron-right"></i></a></li>
+            {{/if}}
+        </ul>
+    </div>
+</section>
+{{/if}}
+<!-- SECTION PAGINATION END -->

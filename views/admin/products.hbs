@@ -1,0 +1,77 @@
+<!-- SECTION PRODUCTS START -->
+<section class="products">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <a href="/admin/addProduct" class="admin__links">Добавить новый продукт</a>
+        <div class="products__head admin__box">
+            <a href="#!" class="products__link" class="admin__links">{{categoryName}}</a>
+            <div id="productList" class="products__slider">
+                {{#if products}}
+                {{#each products}}
+                <div class="products__item ">
+                    <a href="#!" class="products__item__link">
+                        <img class="products__item__img" src="{{imageSrc}}" alt="jpg">
+                    </a>
+                    <p class="products__item__name">{{name}}</p>
+                    {{#if isAdmin}}
+                    <p>Приоритет: {{priority}}</p>
+                    {{/if}}
+                    <div class="products__item__prices">
+                        <span class="products__item__amount">{{cost}} сум</span>
+                        <div class="products__item__btns admin__pro__btn">
+                            <a href="/admin/editProduct/{{_id}}">
+                                <button class="editProduct admin__card__btn"> Редактировать</button>
+                            </a>
+                            <a href="/products/delete/{{_id}}">
+                                <button class="deleteProduct admin__card__btn">Удалить </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+                {{else}}
+                <div class="admin__product">
+                    <h3 class="admin__span">Данная категория пуст</h3>
+                    <a href="/admin/addProduct" class="admin__links">Добавить новый продукт</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION PRODUCTS END -->
+
+<!-- SECTION PAGINATION START -->
+{{#if paginate.totalDocs}}
+<section class="pagination">
+    <div class="wrapper">
+        <ul class="pagination__numbers">
+            {{#if paginate.hasPrevPage}}
+            <li class="pagination__numbers__item">
+                <a href="/admin/products/{{categoryId}}?page={{paginate.prevPage}}"
+                    class="pagination__numbers__number"><i class="far fa-chevron-left"></i></a></li>
+            {{/if}}
+            {{#each paginate.pageNumbers}}
+            {{#if active}}
+            <li class="pagination__numbers__item">
+                <a href="/admin/products/{{@root.categoryId}}?page={{page}}"
+                    class="pagination__numbers__number active">{{page}}</a>
+            </li>
+            {{else}}
+            <li class="pagination__numbers__item">
+                <a href="/admin/products/{{@root.categoryId}}?page={{page}}"
+                    class="pagination__numbers__number">{{page}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            {{#if paginate.hasNextPage}}
+            <li class="pagination__numbers__item">
+                <a href="/admin/products/{{categoryId}}?page={{paginate.nextPage}}" class="pagination__numbers__number">
+                    <i class="far fa-chevron-right"></i></a></li>
+            {{/if}}
+        </ul>
+    </div>
+</section>
+{{/if}}
+<!-- SECTION PAGINATION END -->

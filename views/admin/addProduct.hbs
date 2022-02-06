@@ -1,0 +1,33 @@
+<section class="auth">
+    <div class="wrapper">
+        <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+        <div class="auth__content">
+            <form action="/products" method="POST" enctype="multipart/form-data" class="auth__form">
+                <h5 class="auth__form__title">Добавление нового продукта</h5>
+                <div class="auth__form__content">
+                    <select name="categoryId" required class="auth__form__input">
+                        {{#each categories}}
+                        <option value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                    <input name="name" type="text" class="auth__form__input" required placeholder="Название товара">
+                    <input name="cost" type="text" class="auth__form__input" required placeholder="Цена">
+                    <input name="caseNumber" type="text" class="auth__form__input" placeholder="Номер полки">
+                    <input name="priority" type="number" class="auth__form__input" placeholder="Приоритет показа на слайдере">
+                     <select name="isExist" class="auth__form__input">
+                        <option selected value="true">В наличии</option>
+                        <option value="false">Нет в наличии</option>
+                    </select>
+
+                    <select name="showInProductSlider" required class="auth__form__input">
+                        <option  value="true">Показать на слайдере</option>
+                        <option selected value="false">Не показать на слайдере</option>
+                    </select>
+                    
+                    <input name="image" type="file" required class="auth__form__input">
+                    <button type="submit" class="auth__form__submit">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

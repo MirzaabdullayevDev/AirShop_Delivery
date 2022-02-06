@@ -1,0 +1,15 @@
+<div class="wrapper">
+    {{#if isAdmin}}
+    <a href="/admin" class="back__admin">
+        <i class="fas fa-caret-left"></i>
+        Админ
+    </a>
+    {{/if}}
+    <div class="aboutUs__text">
+        {{{text}}}
+    </div>
+
+    {{#if isAdmin}}
+    <a href="/info/getCreateOrEditInfoPage?pageName=contacts" class="aboutUs__btn">Редактировать</a>
+    {{/if}}
+</div>

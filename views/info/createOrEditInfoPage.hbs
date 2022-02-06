@@ -1,0 +1,16 @@
+<div class="wrapper">
+    {{#if isAdmin}}
+    <a href="/admin" class="back__admin">
+        <i class="fas fa-caret-left"></i>
+        Админ
+    </a>
+    {{/if}}
+    <h1 class="admin__head"> Редактирование страницы: {{pageName}}</h1>
+
+    <form action="/info/createOrEdit" method="POST" class="editAboutUsForm">
+        <input type="hidden" name="pageName" value="{{pageName}}">
+        <textarea name="text" cols="180" rows="25" class="editAboutUsText">{{text}}</textarea>
+        <button type="submit" class="auth__form__submit admin__edit editAboutUsSave">Сохранить</button>
+        {{!-- <input type="button" value="Сохранить" onclick="this.parentNode.submit();" --}}
+    </form>
+</div>

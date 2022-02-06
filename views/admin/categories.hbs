@@ -1,0 +1,38 @@
+<section class="categories">
+        <div class="wrapper">
+                <a href="/admin" class="back__admin"><i class="fas fa-caret-left"></i>Админ</a>
+                <h2 class="categories__title admin__head">Категория товаров</h2>
+                <div class="admin__box">
+                        <a href="/admin/addCategory" class="admin__links">Добавить новую категорию</a>
+                </div>
+
+                <div class="categories__box__admin">
+
+                        {{#if categories}}
+                        {{#each categories}}
+                        <div class="admin__card">
+                                <a href="/admin/products/{{_id}}?page=1" class="categories__box">
+                                        <span class="categories__item">
+                                                <img src="{{imageSrc}}" alt="png" class="categories__box__img"></span>
+                                        <span class="categories__title">{{name}}</span>
+                                        {{#if isAdmin}}
+                                                <p>Приоритет: {{priority}}</p>
+                                        {{/if}}
+                                        <p>
+                                                <a href="/admin/categoryEdit/{{_id}}">
+                                                        <button
+                                                                class="auth__form__submit admin__edit">Редактировать</button>
+                                                </a>
+                                        </p>
+                                        <a href="/categories/delete/{{_id}}">
+                                                <button class="auth__form__submit admin__remove">Удалить</button>
+                                        </a>
+                                </a>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <h3 class="here__empty">Список категорий пуст</h3>
+                        {{/if}}
+                </div>
+        </div>
+</section>

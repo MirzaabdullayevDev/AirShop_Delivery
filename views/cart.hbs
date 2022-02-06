@@ -1,0 +1,98 @@
+<!-- SECTION CARD START -->
+<h3 class="hide" id="instruction">Сдвиньте карту для нахождение своего дома, и кликайте для указание местоположения</h3>
+<div id="map" class="map hide"></div>
+<button id="hideButton" class="hide">
+    <span>OK</span>
+</button>
+<section id="card" class="card">
+    <div class="wrapper">
+        <h3 class="card__head">Корзина <span class="card__head__count">{{cart.countProducts}}</span></h3>
+        <p class="error">{{cartError}}</p>
+        <div class="card__box">
+            <div class="card__products">
+                {{#each cart.list}}
+                <div class="card__product">
+                    <a href="#!" class="card__product__link">
+                        <img src="{{imageSrc}}" alt="jpg" class="card__product__img">
+                    </a>
+                    <div class="card__about">
+                        <a href="#!" class="card__product__link card__about__img">
+                            <img src="{{imageSrc}}" alt="jpg" class="card__product__img">
+                        </a>
+                        <p class="card__about__name">{{name}}</p>
+                        <span class="card__about__amount">{{cost}} Сум</span>
+                    </div>
+                    <div class="card__action">
+                        <div class="card__action__box">
+                            <span class="card__action__amount" data-price="{{cost}}">{{sum}}</span>
+                            <span class="card__action__currency">Сум</span>
+                        </div>
+                        <div class="card__btns">
+                            <button class="card__minus"><i class="minus far fa-minus"></i></button>
+                            <span class="card__show">{{count}}</span>
+                            <button class="card__pilus"><i class="plus far fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <button data-id={{_id}} class="card__product__remove"><i class="far fa-trash-alt"></i></button>
+                    <button data-id={{_id}} class="card__product__check"><i class="far fa-check"></i></button>
+                </div>
+                {{/each}}
+
+
+                <a href="/">
+                    <button class="card__products__add">
+                        <i class="far fa-chevron-left"></i>Добавить товар</button>
+                </a>
+            </div>
+            <div class="card__payment payment">
+                {{#if cart.list}}
+                <div class="payment__top">
+                    <span class="payment__top__item"><i class="fal fa-exclamation-triangle"></i></span>
+                    <p class="payment__top__text">Минимальная сумма заказа с доставкой на дом — 30 000 Сум.</p>
+                </div>
+                <div class="payment__bottom">
+                    <div class="payment__basket">
+                        <div class="payment__view">
+                            <span class="payment__view__span">Итого:</span>
+                            <p class="payment__view__item">Общая стоимость,
+                                без учета доставки</p>
+                        </div>
+                        <div class="payment__total">
+                            <span class="payment__total__amount">{{cart.totalCost}}</span>
+                            <span class="payment__total__currency">Сум</span>
+                        </div>
+                    </div>
+                    <div class="payment__data data">
+                        <p class="data__text">Время доставки</p>
+                        <div class="data__items">Выберите время <i class="far fa-chevron-down"></i></div>
+                        <ul id="deliveryTime" class="data__list">
+                            <li data-id="8" class="data__list__item">8:00 - 10:00</li>
+                            <li data-id="10" class="data__list__item">10:00 - 12:00</li>
+                            <li data-id="12" class="data__list__item">12:00 - 14:00</li>
+                            <li data-id="14" class="data__list__item">14:00 - 16:00</li>
+                            <li data-id="16" class="data__list__item">16:00 - 18:00</li>
+                            <li data-id="18" class="data__list__item">18:00 - 20:00</li>
+                            <li data-id="20" class="data__list__item">20:00 - 22:00</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="hide" id="showButton"><span><i class="fas fa-location-arrow"></i></span><span
+                        id="textbtn"> Указать
+                        свой адрес</span></button>
+
+                <form action="/orders" method="POST">
+                    <input id="timeId" name="timeId" type="hidden">
+                    <input id="timeInterval" name="timeInterval" type="hidden">
+                    <input id="latitude" name="latitude" type="hidden">
+                    <input id="longitude" name="longitude" type="hidden">
+                    <div id="checkout" class="hide">
+                        <button class="payment__btn" type="submit">Оформить заказ</button>
+                    </div>
+                </form>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION CARD END -->
