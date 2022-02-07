@@ -51,6 +51,7 @@ module.exports.verify = async function (req, res) {
         ref = '/auth/verify?forgot=true'
     }
     const errors = validationResult(req)
+    
     if (!errors.isEmpty()) {
         req.flash('verifyError', errors.array()[0].msg)
         return res.status(422).redirect(ref)
